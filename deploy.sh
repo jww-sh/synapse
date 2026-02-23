@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+# Admin user created on first deploy
+PSH_ADMIN_USERNAME="${PSH_ADMIN_USERNAME:-admin}"
+PSH_ADMIN_EMAIL="${PSH_ADMIN_EMAIL:-admin@example.com}"
+
 # Extract PostgreSQL connection info from platform relationships
 DB_HOST=$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r ".database[0].host")
 DB_PORT=$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r ".database[0].port")

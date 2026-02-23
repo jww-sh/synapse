@@ -11,7 +11,7 @@ Matrix is an open standard for decentralized, real-time communication. Synapse i
 
 ## Features
 
-- Synapse (latest, pinned in `synapse_version`)
+- Synapse (latest)
 - Python 3.12
 - PostgreSQL 16
 - Auto-generated signing key and secrets
@@ -25,8 +25,6 @@ Matrix is an open standard for decentralized, real-time communication. Synapse i
 | `build.sh` | Installs Synapse via pip |
 | `deploy.sh` | Generates secrets, signing key, and `homeserver.yaml` |
 | `postdeploy.sh` | Registers the initial admin user via `register_new_matrix_user` |
-| `.environment` | Sets admin username/email used during first deploy |
-| `synapse_version` | Pinned Synapse version |
 
 ## Deploying
 
@@ -50,16 +48,6 @@ Then log in with a Matrix client (e.g. [Element](https://element.io)) using:
 - **Password**: retrieved above
 
 > **Change your password immediately after first login.**
-
-## Updating Synapse
-
-Edit `synapse_version`, commit, and push:
-
-```bash
-echo "1.150.0" > synapse_version
-git add synapse_version && git commit -m "Update Synapse to 1.150.0"
-git push upsun main
-```
 
 ## Customization
 
