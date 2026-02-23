@@ -1,0 +1,51 @@
+applications:
+    app:
+        type: 'python:3.12'
+
+        hooks:
+            build: !include
+                type: string
+                path: ../build.sh
+            deploy: !include
+                type: string
+                path: ../deploy.sh
+            post_deploy: !include
+                type: string
+                path: ../postdeploy.sh
+
+        relationships:
+            database: "db:postgresql"
+
+        web:
+            upstream:
+                socket_family: tcp
+                protocol: http
+            commands:
+                start: python -m synapse.app.homeserver -c data/homeserver.yaml
+            locations:
+                '/':
+                    # Pass everything through to Synapse; no static files to serve
+                    passthru: true
+                    allow: false
+
+        mounts:
+            # Persistent config: signing key, secrets, homeserver.yaml, pid
+            'data':
+                source: instance
+                source_path: synapse-data
+            # Persistent media store
+            'media':
+                source: instance
+                source_path: synapse-media
+
+services:
+    db:
+        type: postgresql:16
+
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "app:http"
+        primary: true
+        cache:
+            enabled: false

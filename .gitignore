@@ -1,0 +1,6 @@
+data/
+media/
+*.pyc
+__pycache__/
+.env
+.claude/

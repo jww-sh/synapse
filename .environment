@@ -1,0 +1,3 @@
+# Admin user created on first deploy
+export PSH_ADMIN_USERNAME=admin
+export PSH_ADMIN_EMAIL=admin@example.com
