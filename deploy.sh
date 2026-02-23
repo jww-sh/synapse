@@ -63,6 +63,7 @@ pid_file: /app/data/homeserver.pid
 
 listeners:
   - port: ${PORT:-8008}
+    bind_addresses: ['0.0.0.0']
     tls: false
     type: http
     x_forwarded: true
