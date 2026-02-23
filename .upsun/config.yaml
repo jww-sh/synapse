@@ -41,6 +41,9 @@ applications:
 services:
     db:
         type: postgresql:16
+        configuration:
+            default_collation: "C"
+            default_ctype: "C"
 
 routes:
     "https://{default}/":
