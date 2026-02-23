@@ -14,7 +14,7 @@ applications:
                 path: ../postdeploy.sh
 
         relationships:
-            database: "db2:postgresql"
+            database: "db:postgresql"
 
         web:
             upstream:
@@ -39,7 +39,7 @@ applications:
                 source_path: synapse-media
 
 services:
-    db2:
+    db:
         type: postgresql:16
         configuration:
             default_collation: "C"
