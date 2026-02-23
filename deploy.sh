@@ -21,7 +21,7 @@ if [ ! -f data/secrets ]; then
     printf "FORM_SECRET=%s\n"         "$(openssl rand -hex 32)" >> data/secrets
 fi
 # shellcheck source=/dev/null
-source data/secrets
+. data/secrets
 
 # Generate the Matrix signing key on first deploy only
 if [ ! -f data/homeserver.signing.key ]; then
